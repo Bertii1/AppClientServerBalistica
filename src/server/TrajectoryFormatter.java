@@ -3,6 +3,7 @@ package server;
 import server.BallisticCalculator.SimulationResult;
 import server.BallisticCalculator.Point2D;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Formatta i risultati della simulazione balistica
@@ -51,15 +52,15 @@ public class TrajectoryFormatter {
 
         // Dati strutturati per grafico JFreeChart (parsabili dal client)
         sb.append("TRAJECTORY_DATA_START\n");
-        sb.append(String.format("PARAMS:%.2f,%.2f,%.3f,%.3f\n",
+        sb.append(String.format(Locale.US, "PARAMS:%.2f,%.2f,%.3f,%.3f\n",
                 result.initialVelocity, result.angle, result.mass, result.dragCoeff));
-        sb.append(String.format("RESULTS:%.2f,%.2f,%.2f\n",
+        sb.append(String.format(Locale.US, "RESULTS:%.2f,%.2f,%.2f\n",
                 result.maxRange, result.maxHeight, result.flightTime));
         sb.append("POINTS:");
         for (int i = 0; i < result.trajectory.size(); i++) {
             Point2D p = result.trajectory.get(i);
             if (i > 0) sb.append(";");
-            sb.append(String.format("%.2f,%.2f,%.2f", p.x, p.y, p.t));
+            sb.append(String.format(Locale.US, "%.2f,%.2f,%.2f", p.x, p.y, p.t));
         }
         sb.append("\n");
         sb.append("TRAJECTORY_DATA_END");

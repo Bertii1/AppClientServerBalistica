@@ -115,7 +115,9 @@ public class ClientHandler extends Thread {
             } else if (line.equalsIgnoreCase("HELP")) {
                 sendHelp();
             } else {
+                out.println("BEGIN_RESULT");
                 out.println("ERROR Comando sconosciuto. Usa HELP per la lista comandi.");
+                out.println("END_RESULT");
             }
         }
     }
@@ -127,7 +129,9 @@ public class ClientHandler extends Thread {
         String[] parts = params.split("\\s+");
 
         if (parts.length != 4) {
+            out.println("BEGIN_RESULT");
             out.println("ERROR Formato: SIMULATE velocity angle mass dragCoeff");
+            out.println("END_RESULT");
             return;
         }
 
@@ -145,7 +149,9 @@ public class ClientHandler extends Thread {
             if (dragCoeff <= 0) errors.append("dragCoeff deve essere > 0; ");
 
             if (errors.length() > 0) {
+                out.println("BEGIN_RESULT");
                 out.println("ERROR Parametri invalidi: " + errors.toString());
+                out.println("END_RESULT");
                 return;
             }
 
@@ -163,7 +169,9 @@ public class ClientHandler extends Thread {
             log("Risultati inviati al client '" + username + "'");
 
         } catch (NumberFormatException e) {
+            out.println("BEGIN_RESULT");
             out.println("ERROR Parametri devono essere numeri validi");
+            out.println("END_RESULT");
         }
     }
 

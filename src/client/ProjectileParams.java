@@ -56,7 +56,7 @@ public class ProjectileParams {
      * @return stringa "SIMULATE velocity angle mass dragCoeff"
      */
     public String toProtocolString() {
-        return String.format("SIMULATE %.4f %.4f %.4f %.4f",
+        return String.format(java.util.Locale.US, "SIMULATE %.4f %.4f %.4f %.4f",
                 velocity, angle, mass, dragCoeff);
     }
 
