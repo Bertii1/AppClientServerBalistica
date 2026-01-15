@@ -181,16 +181,3 @@ Per aggiungere utenti, modifica `data/users.txt` (formato: `username:password`).
 | JFreeChart | 1.5.4 | Grafici interattivi |
 
 Le dipendenze vengono scaricate automaticamente da Maven.
-
-## Estensioni Future
-
-- [ ] Salvataggio simulazioni in JSON
-- [ ] Supporto vento laterale
-- [ ] Storico simulazioni (comando HISTORY)
-- [ ] Logging strutturato
-- [ ] Supporto SSL/TLS
-- [ ] Export grafico come immagine PNG
-
-## Autore
-
-Progetto didattico per lo studio delle applicazioni client-server TCP in Java.
