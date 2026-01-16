@@ -1,13 +1,16 @@
 package server;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 /**
  * Gestisce la connessione con un singolo client.
  * Implementa il protocollo di autenticazione e simulazione.
  */
-public class ClientHandler extends Thread {
+public class ClientHandler implements Runnable {
     private static final int MAX_AUTH_ATTEMPTS = 3;
 
     private final Socket socket;
@@ -22,7 +25,6 @@ public class ClientHandler extends Thread {
         this.server = server;
     }
 
-    @Override
     public void run() {
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
