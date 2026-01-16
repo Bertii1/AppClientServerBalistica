@@ -92,7 +92,7 @@ public class BallisticCalculator {
         trajectory.add(new Point2D(x, y, t));
 
         // Loop di simulazione
-        while (y >= 0 || t == 0) {
+        while (y >= 0) {
             // Calcola velocità totale
             double speed = Math.sqrt(vX * vX + vY * vY);
 

@@ -1,5 +1,14 @@
 package client;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -8,11 +17,6 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Visualizza la traiettoria balistica con JFreeChart.
@@ -72,12 +76,15 @@ public class TrajectoryChart {
             line = line.trim();
 
             if (line.startsWith("PARAMS:")) {
-                String[] params = line.substring(7).split(",");
-                if (params.length >= 4) {
-                    data.velocity = Double.parseDouble(params[0]);
-                    data.angle = Double.parseDouble(params[1]);
-                    data.mass = Double.parseDouble(params[2]);
-                    data.dragCoeff = Double.parseDouble(params[3]);
+                String paramsStr = line.substring(7).trim();
+                if (!paramsStr.isEmpty()) {
+                    String[] params = paramsStr.split(",");
+                    if (params.length >= 4) {
+                        data.velocity = Double.parseDouble(params[0]);
+                        data.angle = Double.parseDouble(params[1]);
+                        data.mass = Double.parseDouble(params[2]);
+                        data.dragCoeff = Double.parseDouble(params[3]);
+                    }
                 }
             } else if (line.startsWith("RESULTS:")) {
                 String[] results = line.substring(8).split(",");
