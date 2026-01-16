@@ -11,31 +11,35 @@ public class Main {
     private static BallisticClient client;
 
     public static void main(String[] args) {
-        printWelcome();
+        try {
+            printWelcome();
 
-        client = new BallisticClient();
+            client = new BallisticClient();
 
-        // Connessione al server
-        System.out.print("Connessione al server...");
-        if (!client.connect()) {
-            System.out.println(" FALLITA");
-            System.out.println("Assicurati che il server sia in esecuzione su localhost:5000");
-            return;
-        }
-        System.out.println(" OK");
+            // Connessione al server
+            System.out.print("Connessione al server...");
+            if (!client.connect()) {
+                System.out.println(" FALLITA");
+                System.out.println("Assicurati che il server sia in esecuzione su localhost:5000");
+                return;
+            }
+            System.out.println(" OK");
 
-        // Autenticazione
-        if (!login()) {
+            // Autenticazione
+            if (!login()) {
+                client.disconnect();
+                return;
+            }
+
+            // Menu principale
+            mainMenu();
+
+            // Disconnessione
             client.disconnect();
-            return;
+            System.out.println("\nArrivederci!");
+        } finally {
+            scanner.close();
         }
-
-        // Menu principale
-        mainMenu();
-
-        // Disconnessione
-        client.disconnect();
-        System.out.println("\nArrivederci!");
     }
 
     private static void printWelcome() {
